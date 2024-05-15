@@ -14,4 +14,9 @@ public class ResponseMessageDto {
     private String content;
     private Long writerId;
     private Date createdDate;
+
+    static public ResponseMessageDto of(ChatMessage chatMessage) {
+        return new ResponseMessageDto(chatMessage.getId(), chatMessage.getRoomId(),
+            chatMessage.getContent(), chatMessage.getWriterId(), chatMessage.getCreatedDate());
+    }
 }
