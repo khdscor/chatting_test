@@ -14,16 +14,14 @@ public class ChatRoomService {
     private final ChatRoomRepository chatRoomRepository;
 
     @Transactional
-    public void createChatRoom(RequestChatRoomDto requestChatRoomDto) {
+    public ResponseChatRoomDto createChatRoom(RequestChatRoomDto requestChatRoomDto) {
         ChatRoom chatRoom = new ChatRoom(requestChatRoomDto.getTitle(), new Date());
-        chatRoomRepository.save(chatRoom);
+        return ResponseChatRoomDto.of(chatRoomRepository.save(chatRoom));
     }
 
     @Transactional
     public List<ResponseChatRoomDto> findChatRoomList() {
         List<ChatRoom> chatRooms = chatRoomRepository.findAll();
-        return chatRooms.stream().map(
-            chatRoom -> new ResponseChatRoomDto(chatRoom.getId(), chatRoom.getTitle(),
-                chatRoom.getNewDate())).collect(Collectors.toList());
+        return chatRooms.stream().map(ResponseChatRoomDto::of).collect(Collectors.toList());
     }
 }

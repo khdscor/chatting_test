@@ -12,4 +12,8 @@ public class ResponseChatRoomDto {
     private String title;
     private Date createDate;
 
+    public static ResponseChatRoomDto of(ChatRoom chatRoom) {
+        return new ResponseChatRoomDto(chatRoom.getId(), chatRoom.getTitle(),
+            chatRoom.getNewDate());
+    }
 }
