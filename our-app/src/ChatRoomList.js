@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
+import './ChatRoomList.css';
 
 const ChatRoomList = (props) => {
 
@@ -34,7 +36,6 @@ const ChatRoomList = (props) => {
         }
     };
 
-
     useEffect(() => {
         fetchRooms();
       }, []);
@@ -53,7 +54,13 @@ const ChatRoomList = (props) => {
         </div>
         {/* 채팅방 리스트 출력 */}
         {chatRoom.map((item, index) => (
-          <div key={index} className="list-item">{item.title}</div>
+          <Link 
+            key={index} 
+            to={`/room/${item.id}`}
+            style={{ textDecoration: 'none'}}
+          > 
+            <div className="list-item">{item.title}</div>
+          </Link>
         ))}
       </ul>
     </div>

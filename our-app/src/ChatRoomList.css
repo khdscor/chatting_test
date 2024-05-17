@@ -1,0 +1,14 @@
+.list-item {
+  text-decoration: none;
+  padding: 10px;
+  margin: 5px 0;
+  width: 120px;
+  border-radius: 5px; /* 박스 모서리를 둥글게 만듭니다 */
+  text-align: center; /* 텍스트를 가운데 정렬합니다 */
+  color: #fff; /* 텍스트 색상을 흰색으로 변경합니다 */
+  background-image: linear-gradient(to right, #FFC10E, #8914ff); /* 배경에 그라데이션 추가 */
+}
+
+input, button {
+  margin: 5px;
+}
