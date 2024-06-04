@@ -3,12 +3,12 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import './ChatRoomList.css';
 
-const ChatRoomList = (props) => {
+const ChatRoomList = () => {
 
     const [chatRoom, setChatRoom] = new useState([]);
 
     const [inputValue, setInputValue] = useState('');
-   // 입력 필드에 변화가 있을 때마다 inputValue를 업데이트
+    // 입력 필드에 변화가 있을 때마다 inputValue를 업데이트
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
@@ -20,20 +20,20 @@ const ChatRoomList = (props) => {
 
     const createRoom = () => {
     if (inputValue) {
-        const body = {
-        title : inputValue
-        };
-        axios.post("http://localhost:8080/create", body)
-            .then(response => {
-                    if(response.status === 201){
-                        setInputValue('');
-                        setChatRoom((prev) => [...prev, response.data]);
-                    } else {
-                        alert("경고경고!");
-                    }
-                }
-            )
-        }
+      const body = {
+      title : inputValue
+      };
+      axios.post("http://localhost:8080/create", body)
+          .then(response => {
+                  if(response.status === 201){
+                      setInputValue('');
+                      setChatRoom((prev) => [...prev, response.data]);
+                  } else {
+                      alert("경고경고!");
+                  }
+              }
+          )
+      }
     };
 
     useEffect(() => {
