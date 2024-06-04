@@ -38,6 +38,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	//mongoDB
 	implementation ('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
+	//kafka
+	implementation 'org.springframework.kafka:spring-kafka'
 
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
