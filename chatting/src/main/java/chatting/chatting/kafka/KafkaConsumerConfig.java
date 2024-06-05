@@ -17,7 +17,7 @@ public class KafkaConsumerConfig {
 
     private static final String BOOTSTRAP_SERVER = "localhost:9092, localhost:9093, localhost:9094";
 
-    private final static String GROUP_ID = "group-test";
+    private final static String GROUP_ID = System.getenv("GROUP_ID");
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
