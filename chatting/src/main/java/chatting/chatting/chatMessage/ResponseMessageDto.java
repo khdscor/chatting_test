@@ -3,13 +3,14 @@ package chatting.chatting.chatMessage;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.bson.types.ObjectId;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 public class ResponseMessageDto {
 
-    private ObjectId id;
+    private String id;
     private Long roomId;
     private String content;
     private Long writerId;
