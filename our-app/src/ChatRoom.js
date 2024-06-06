@@ -14,7 +14,7 @@ const ChatRoom = () => {
         setSelectedNumber(number);
     };
 
-    const { roomId } = useParams();
+    const { port, roomId } = useParams();
 
     const stompClient = useRef(null);
   // 채팅 내용들을 저장할 변수
@@ -27,7 +27,7 @@ const ChatRoom = () => {
   };
    // 웹소켓 연결 설정
   const connect = () => {
-    const socket = new WebSocket("ws://localhost:8080/ws-stomp");
+    const socket = new WebSocket("ws://localhost:" + port + "/ws-stomp");
     stompClient.current = Stomp.over(socket);
     stompClient.current.connect({}, () => {
     stompClient.current.subscribe(`/sub/chatroom/` + roomId, (message) => {
@@ -44,7 +44,7 @@ const ChatRoom = () => {
   };
   // 기존 채팅 메시지를 서버로부터 가져오는 함수
   const fetchMessages = () => {
-    axios.get("http://localhost:8080/find/chat/list/" + roomId)
+    axios.get("http://localhost:" + port+ "/find/chat/list/" + roomId)
         .then(response => {setMessages(response.data)});
     
   };
