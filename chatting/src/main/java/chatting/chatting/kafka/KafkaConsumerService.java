@@ -33,9 +33,11 @@ public class KafkaConsumerService {
 
     public void startListening() {
         endpointRegistry.getListenerContainer("dynamicListener").start();
+        System.out.println("startListening");
     }
 
     public void stopListening() {
         endpointRegistry.getListenerContainer("dynamicListener").stop();
+        System.out.println("stopListening");
     }
 }
