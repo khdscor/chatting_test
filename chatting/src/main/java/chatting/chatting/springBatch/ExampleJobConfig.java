@@ -20,6 +20,7 @@ public class ExampleJobConfig {
         return new JobBuilder("simpleJob", jobRepository)
             .start(simpleStep1(jobRepository, platformTransactionManager))
             .next(simpleStep2(jobRepository, platformTransactionManager))
+            .next(simpleStep3(jobRepository, platformTransactionManager))
             .build();
     }
     @Bean
@@ -34,6 +35,11 @@ public class ExampleJobConfig {
             .tasklet(testTasklet2(), platformTransactionManager).build();
     }
 
+    @Bean
+    public Step simpleStep3(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
+        return new StepBuilder("simpleStep3", jobRepository)
+            .tasklet(new TestTasklet3(), platformTransactionManager).build();
+    }
 
     @Bean
     public Tasklet testTasklet1(){
