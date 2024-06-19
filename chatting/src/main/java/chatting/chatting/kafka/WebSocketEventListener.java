@@ -11,16 +11,27 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 public class WebSocketEventListener {
 
     private final KafkaConsumerService kafkaConsumerService;
+    private final WebSocketTracker webSocketTracker;
 
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectEvent event) {
-        // 카프카 컨슈머 시작
-        kafkaConsumerService.startListening();
+        // 웹소켓 연결 시 사용자가 아무도 없을 경우
+        if (!webSocketTracker.hasActiveConnections()) {
+            // 카프카 컨슈머로서 구독 시작
+            kafkaConsumerService.startListening();
+        }
+        // 사용자 추가
+        webSocketTracker.userConnected();
     }
 
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
-        // 카프카 컨슈머 종료
-        kafkaConsumerService.stopListening();
+        // 웹소켓 종료 시 사용자 제거
+        webSocketTracker.userDisconnected();
+        // 웹소켓 연결한 사용자가 아무도 없을 경우
+        if (!webSocketTracker.hasActiveConnections()) {
+            // 카프카 구독 종료
+            kafkaConsumerService.stopListening();
+        }
     }
 }
