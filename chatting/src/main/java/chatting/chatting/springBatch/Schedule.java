@@ -1,5 +1,6 @@
 package chatting.chatting.springBatch;
 
+
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class BatchScheduler {
+public class Schedule {
 
     private final JobLauncher jobLauncher;
     private final JobRegistry jobRegistry;
